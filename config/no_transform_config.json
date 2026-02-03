@@ -1,0 +1,40 @@
+{
+    "opacity_threshold": 0.02,
+    "rotation_degree": [],
+    "rotation_axis": [],
+    "scale": 1.0,
+    "disable_transform": true,
+    "substep_dt": 2e-05,
+    "frame_dt": 0.04,
+    "frame_num": 50,
+    "E": 50000000.0,
+    "nu": 0.3,
+    "material": "sand",
+    "density": 2000,
+    "g": [
+        0.0,
+        0.0,
+        -9.8
+    ],
+    "friction_angle": 30,
+    "n_grid": 200,
+    "particle_filling": {
+        "n_grid": 100,
+        "density_threshold": 10.0,
+        "search_threshold": 0.01,
+        "search_exclude_direction": -1,
+        "ray_cast_direction": 4,
+        "max_particles_num": 2000000,
+        "max_partciels_per_cell": 1,
+        "boundary": [
+            -0.4968982934951782,
+            1.2874153852462769,
+            -1.8958309888839722,
+            4.3353142738342285,
+            0.19358734786510468,
+            2.1082167625427246
+        ],
+        "smooth": false,
+        "visualize": true
+    }
+}

@@ -169,12 +169,22 @@ if __name__ == "__main__":
         init_opacity = init_opacity[mask, :]
         init_shs = init_shs[mask, :]
 
-    transformed_pos, scale_origin, original_mean_pos = transform2origin(rotated_pos, preprocessing_params["scale"])
-    transformed_pos = shift2center111(transformed_pos)
+    if preprocessing_params.get("disable_transform", False):
+        transformed_pos = rotated_pos
+        original_mean_pos = torch.zeros((3,), device=rotated_pos.device)
+        scale_origin = 1.0
 
-    # modify covariance matrix accordingly
-    init_cov = apply_cov_rotations(init_cov, rotation_matrices)
-    init_cov = scale_origin * scale_origin * init_cov
+        # modify covariance matrix accordingly
+        init_cov = apply_cov_rotations(init_cov, rotation_matrices)
+    else:
+        transformed_pos, scale_origin, original_mean_pos = transform2origin(
+            rotated_pos, preprocessing_params["scale"]
+        )
+        transformed_pos = shift2center111(transformed_pos)
+
+        # modify covariance matrix accordingly
+        init_cov = apply_cov_rotations(init_cov, rotation_matrices)
+        init_cov = scale_origin * scale_origin * init_cov
 
     if args.debug:
         particle_position_tensor_to_ply(
