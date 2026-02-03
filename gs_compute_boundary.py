@@ -58,10 +58,12 @@ def main():
     with open(args.config, "r", encoding="utf-8") as f:
         cfg = json.load(f)
 
-    if "particle_filling" not in cfg or cfg["particle_filling"] is None:
-        raise AssertionError("particle_filling is missing in config.")
-
-    cfg["particle_filling"]["boundary"] = boundary
+    if "particle_filling" in cfg and cfg["particle_filling"] is not None:
+        cfg["particle_filling"]["boundary"] = boundary
+    elif "particle_filling_sdf" in cfg and cfg["particle_filling_sdf"] is not None:
+        cfg["particle_filling_sdf"]["boundary"] = boundary
+    else:
+        raise AssertionError("particle_filling or particle_filling_sdf is missing in config.")
 
     with open(args.config, "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=4)

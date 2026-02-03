@@ -11,7 +11,7 @@ cd ..
 
 @REM uv run python gs_fill_particles.py --model_path "F:/dataset/PhysGaussian-dataset/bread-trained/bread-trained" --config "config/tear_bread_config.json"
 
-uv run python gs_fill_particles.py --model_path "D:/GS-project/MultiLayer-3DGS/Multi-Layer-Anatomy-GS-Training/eval/example-man" --config "config/no_transform_config.json"
+uv run python gs_fill_particles_sdf.py --model_path "D:/GS-project/MultiLayer-3DGS/Multi-Layer-Anatomy-GS-Training/eval/example-man" --config "config/no_transform_sdf_config.json" 
 
 pause
 
